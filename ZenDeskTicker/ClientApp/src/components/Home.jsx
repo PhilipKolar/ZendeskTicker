@@ -55,7 +55,6 @@ const Sev1Dashboard = ({ currentHighScore, daysSinceSev, status, ticketCreatedAt
 
 const HomeController = () => {
     const [daysSinceSev1, setDaysSinceSev1] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     const getSev1Data = () => {
         getJsonAsync('api/NewRelic/DaysSinceSev?severity=1')
@@ -78,14 +77,8 @@ const HomeController = () => {
         return () => clearInterval(interval);
     });
 
-    useEffect(() => {
-        if (daysSinceSev1 !== null) {
-            setIsLoading(false);
-        }
-    }, [daysSinceSev1])
-
     return (
-        isLoading ? 
+        daysSinceSev1 === null ? 
             <Loading />
             : <Sev1Dashboard {...daysSinceSev1} />
     )
