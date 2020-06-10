@@ -60,7 +60,7 @@ const Sev1Dashboard = ({ currentHighScore, daysSinceSev, status, ticketCreatedAt
                     <strong>Resolution</strong>: {resolutionSummary}
                 </p>
             </div>
-            <Highscore {...currentHighScore} />
+            <Highscore currentHighScore={currentHighScore} />
         </div>
     );
 }
