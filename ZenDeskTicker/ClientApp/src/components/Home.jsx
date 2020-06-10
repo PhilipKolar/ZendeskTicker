@@ -3,7 +3,19 @@ import { DateTime } from "luxon";
 import _ from 'lodash/core';
 import './Home.css';
 import Loading from '../common/Loading';
-var api = require('../util/api');
+
+
+const getJsonAsync = async (url) => {
+    if (typeof (url) !== "string") {
+        return null;
+    }
+
+    const response = await fetch(url, {
+        method: 'GET',
+    });
+    const data = await response.json();
+    return data;
+}
 
 const Highscore = ({ currentHighScore }) => {
     if (typeof(currentHighScore) !== "number") {
@@ -57,7 +69,7 @@ const HomeController = () => {
     const [daysSinceSev1, setDaysSinceSev1] = useState(null);
 
     const getSev1Data = () => {
-        api.getJsonAsync('api/NewRelic/DaysSinceSev?severity=1')
+        getJsonAsync('api/NewRelic/DaysSinceSev?severity=1')
             .then(data => {
                 if (!daysSinceSev1 && !_.isEqual(daysSinceSev1, data)) {
                     setDaysSinceSev1(data);
