@@ -2,8 +2,20 @@
 import { DateTime } from "luxon";
 import _ from 'lodash/core';
 import './Home.css';
-import { getJsonAsync } from '../util/api';
 import Loading from '../common/Loading';
+
+
+const getJsonAsync = async (url) => {
+    if (typeof (url) !== "string") {
+        return null;
+    }
+
+    const response = await fetch(url, {
+        method: 'GET',
+    });
+    const data = await response.json();
+    return data;
+}
 
 const Highscore = ({ currentHighScore }) => {
     if (typeof(currentHighScore) !== "number") {
@@ -48,7 +60,7 @@ const Sev1Dashboard = ({ currentHighScore, daysSinceSev, status, ticketCreatedAt
                     <strong>Resolution</strong>: {resolutionSummary}
                 </p>
             </div>
-            <Highscore {...currentHighScore} />
+            <Highscore currentHighScore={currentHighScore} />
         </div>
     );
 }
