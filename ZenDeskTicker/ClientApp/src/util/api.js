@@ -10,6 +10,4 @@ const getJsonAsync = async(url) => {
   return data;
 }
 
-module.exports = {
-  getJsonAsync,
-}
+module.exports.getJsonAsync = getJsonAsync;
