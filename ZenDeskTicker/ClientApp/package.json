@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "luxon": "^1.24.1",
     "react": "^16.13.1",
     "react-bootstrap": "^0.31.5",
